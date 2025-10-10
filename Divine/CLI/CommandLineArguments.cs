@@ -82,7 +82,7 @@ public class CommandLineArguments
     [EnumeratedValueArgument(typeof(string), 'a', "action",
         Description = "Set action to execute",
         DefaultValue = "extract-package",
-        AllowedValues = "create-package;list-package;extract-single-file;extract-package;extract-packages;convert-model;convert-models;convert-resource;convert-resources;convert-loca",
+        AllowedValues = "create-package;list-package;extract-single-file;extract-package;extract-packages;convert-model;convert-models;convert-resource;convert-resources;convert-loca;build-vt",
         ValueOptional = false,
         Optional = false
     )]
@@ -143,18 +143,34 @@ public class CommandLineArguments
     public bool LegacyGuids;
 
     // @formatter:off
+    [SwitchArgument("fast-build", false,
+        Description = "Faster VT build, but lower compression ratio",
+        Optional = true
+    )]
+    public bool FastBuild;
+
+    // @formatter:off
     [SwitchArgument("use-package-name", false,
         Description = "Use package name for destination folder",
         Optional = true
     )]
     public bool UsePackageName;
 
-		// @formatter:off
+	// @formatter:off
     [SwitchArgument("use-regex", false,
         Description = "Use Regular Expressions for expression type",
         Optional = true
     )]
     public bool UseRegex;
+
+    // @formatter:off
+    [ValueArgument(typeof(string), "vt-root",
+        Description = "Tileset build mod root path",
+        DefaultValue = null,
+        ValueOptional = false,
+        Optional = true
+    )]
+    public string VTRoot;
 
     // @formatter:on
     public static LogLevel GetLogLevelByString(string logLevel)

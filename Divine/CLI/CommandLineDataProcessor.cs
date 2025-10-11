@@ -53,6 +53,7 @@ internal class CommandLineDataProcessor
             var descriptor = new TileSetDescriptor();
             descriptor.RootPath = CommandLineActions.VTRootPath;
             descriptor.Config.FastBuild = CommandLineActions.FastBuild;
+            descriptor.Config.Validate = CommandLineActions.VTValidate;
             descriptor.Load(CommandLineActions.VTConfigPath);
 
             var builder = new TileSetBuilder(descriptor.Config);

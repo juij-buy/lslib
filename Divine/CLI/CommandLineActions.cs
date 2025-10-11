@@ -25,6 +25,7 @@ internal class CommandLineActions
     public static int PackagePriority;
     public static bool LegacyGuids;
     public static bool FastBuild;
+    public static bool VTValidate;
     public static Dictionary<string, bool> GR2Options;
 
     // TODO: OSI support
@@ -67,6 +68,7 @@ internal class CommandLineActions
 
         LegacyGuids = args.LegacyGuids;
         FastBuild = args.FastBuild;
+        VTValidate = args.VTValidate;
 
         if (batchActions.Any(args.Action.Contains))
         {

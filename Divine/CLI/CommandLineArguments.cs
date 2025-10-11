@@ -150,6 +150,13 @@ public class CommandLineArguments
     public bool FastBuild;
 
     // @formatter:off
+    [SwitchArgument("vt-validate", false,
+        Description = "Validate generated VT files",
+        Optional = true
+    )]
+    public bool VTValidate;
+
+    // @formatter:off
     [SwitchArgument("use-package-name", false,
         Description = "Use package name for destination folder",
         Optional = true

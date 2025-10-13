@@ -561,6 +561,7 @@ public class GLTFImporter
 
         var tm = transform.Matrix;
         var myIndex = skeleton.Bones.Count;
+        var iwt = node.GetInverseBindMatrix();
 
         var bone = new Bone
         {
@@ -573,12 +574,18 @@ public class GLTFImporter
                 tm.M31, tm.M32, tm.M33, tm.M34,
                 tm.M41, tm.M42, tm.M43, tm.M44
             ),
-            Transform = Transform.FromGLTF(transform)
+            Transform = Transform.FromGLTF(transform),
+            InverseWorldTransform = [
+                iwt.M11, iwt.M12, iwt.M13, iwt.M14,
+                iwt.M21, iwt.M22, iwt.M23, iwt.M24,
+                iwt.M31, iwt.M32, iwt.M33, iwt.M34,
+                iwt.M41, iwt.M42, iwt.M43, iwt.M44
+            ]
         };
 
         skeleton.Bones.Add(bone);
 
-        bone.UpdateWorldTransforms(skeleton.Bones);
+        bone.UpdateWorldTransform(skeleton.Bones);
 
         if (ext != null && ext.BoneOrder.TryGetValue(bone.Name, out var order) && order > 0)
         {
